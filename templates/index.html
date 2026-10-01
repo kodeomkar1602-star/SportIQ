@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SportIQ - Your AI-powered sports assistant.">
+    <title>SportIQ | AI Sports Assistant</title>
+
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div class="brand">
+                <div class="brand-icon">⚡</div>
+
+                <div class="brand-text">
+                    <h1>SportIQ</h1>
+                    <p>AI Sports Assistant</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+
+                <div class="online-status">
+                    <span class="status-dot"></span>
+                    <span>AI Online</span>
+                </div>
+
+                <button
+                    class="theme-btn"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Toggle theme"
+                    title="Toggle dark/light mode">
+                    ☀️
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- MAIN CHAT AREA -->
+        <main class="main-content">
+
+            <!-- WELCOME SCREEN -->
+            <section class="welcome-screen" id="welcomeScreen">
+
+                <div class="hero-badge">
+                    🏆
+                </div>
+
+                <span class="hero-label">
+                    AI-POWERED SPORTS INTELLIGENCE
+                </span>
+
+                <h2>
+                    Your World of Sports,
+                    <span>One Chat Away.</span>
+                </h2>
+
+                <p class="hero-description">
+                    Ask SportIQ anything about cricket, football, basketball,
+                    tennis, Formula 1, boxing, athletics and more.
+                </p>
+
+
+                <!-- SPORTS -->
+                <div class="sports-grid">
+
+                    <button
+                        class="sport-card"
+                        type="button"
+                        data-prompt="Tell me about cricket.">
+
+                        <div class="sport-icon">🏏</div>
+
+                        <div class="sport-info">
+                            <h3>Cricket</h3>
+                            <p>Players, teams & records</p>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="sport-card"
+                        type="button"
+                        data-prompt="Tell me about football.">
+
+                        <div class="sport-icon">⚽</div>
+
+                        <div class="sport-info">
+                            <h3>Football</h3>
+                            <p>Clubs, players & tournaments</p>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="sport-card"
+                        type="button"
+                        data-prompt="Tell me about basketball.">
+
+                        <div class="sport-icon">🏀</div>
+
+                        <div class="sport-info">
+                            <h3>Basketball</h3>
+                            <p>NBA, teams & players</p>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="sport-card"
+                        type="button"
+                        data-prompt="Tell me about tennis.">
+
+                        <div class="sport-icon">🎾</div>
+
+                        <div class="sport-info">
+                            <h3>Tennis</h3>
+                            <p>Grand Slams & champions</p>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="sport-card"
+                        type="button"
+                        data-prompt="Tell me about Formula 1.">
+
+                        <div class="sport-icon">🏎️</div>
+
+                        <div class="sport-info">
+                            <h3>Formula 1</h3>
+                            <p>Drivers, teams & races</p>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="sport-card"
+                        type="button"
+                        data-prompt="Tell me about boxing.">
+
+                        <div class="sport-icon">🥊</div>
+
+                        <div class="sport-info">
+                            <h3>Boxing</h3>
+                            <p>Champions & legendary fights</p>
+                        </div>
+
+                    </button>
+
+                </div>
+
+
+                <!-- QUICK QUESTIONS -->
+                <div class="quick-section">
+
+                    <div class="quick-heading">
+                        <span>TRY ASKING</span>
+                    </div>
+
+                    <div class="quick-questions">
+
+                        <button
+                            class="quick-btn"
+                            type="button"
+                            data-prompt="Who are the greatest athletes in sports history?">
+                            Greatest athletes in sports history?
+                        </button>
+
+                        <button
+                            class="quick-btn"
+                            type="button"
+                            data-prompt="Explain the offside rule in football.">
+                            Explain the offside rule
+                        </button>
+
+                        <button
+                            class="quick-btn"
+                            type="button"
+                            data-prompt="What are the most important cricket records?">
+                            Important cricket records
+                        </button>
+
+                        <button
+                            class="quick-btn"
+                            type="button"
+                            data-prompt="What is the difference between Formula 1 and Formula 2?">
+                            F1 vs F2
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHAT SCREEN -->
+            <section class="chat-screen" id="chatScreen">
+
+                <div class="messages" id="messages"></div>
+
+                <div class="typing-indicator" id="typingIndicator">
+
+                    <div class="bot-avatar">
+                        ⚡
+                    </div>
+
+                    <div class="typing-box">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- MESSAGE INPUT -->
+        <footer class="chat-footer">
+
+            <div class="input-wrapper">
+
+                <button
+                    class="clear-btn"
+                    id="clearChat"
+                    type="button"
+                    title="Clear conversation"
+                    aria-label="Clear conversation">
+                    ↻
+                </button>
+
+
+                <textarea
+                    id="messageInput"
+                    rows="1"
+                    maxlength="2000"
+                    placeholder="Ask SportIQ anything about sports..."
+                    aria-label="Enter your sports question"></textarea>
+
+
+                <button
+                    class="voice-btn"
+                    id="voiceButton"
+                    type="button"
+                    title="Voice input"
+                    aria-label="Voice input">
+                    🎙️
+                </button>
+
+
+                <button
+                    class="send-btn"
+                    id="sendButton"
+                    type="button"
+                    title="Send message"
+                    aria-label="Send message">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+
+                        <path
+                            d="M22 2L11 13"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"/>
+
+                        <path
+                            d="M22 2L15 22L11 13L2 9L22 2Z"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"/>
+
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <div class="footer-note">
+                <span>SportIQ can make mistakes. Verify important information.</span>
+                <span>Powered by AI</span>
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!-- TOAST MESSAGE -->
+    <div class="toast" id="toast"></div>
+
+
+   <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
